@@ -1,0 +1,138 @@
+{
+  "dns_patterns": {
+    "allowed": [
+      {
+        "timestamp": "2024-09-11 18:46:00",
+        "most_granular_identity": "Active Directory User ([email protected])",
+        "identities": "Active Directory User ([email protected]),WIN11-SNG01-Example",
+        "internal_ip": "10.10.1.100",
+        "external_ip": "24.123.132.133",
+        "action": "Allowed",
+        "query_type": "1 (A)",
+        "response_code": "NOERROR",
+        "domain": "slack.com",
+        "categories": "Software/Technology,Business Services,Allow List,Infrastructure and Content Delivery Networks,SaaS and B2B,Application",
+        "most_granular_identity_type": "AD Users",
+        "identity_types": "AD Users,Anyconnect Roaming Client",
+        "blocked_categories": "",
+        "rule_id": "506165",
+        "destination_countries": "",
+        "organization_id": "8234970"
+      },
+      {
+        "timestamp": "2024-09-11 18:46:05",
+        "most_granular_identity": "Active Directory User ([email protected])",
+        "identities": "Active Directory User ([email protected]),WIN11-SNG01-Example",
+        "internal_ip": "10.10.1.100",
+        "external_ip": "24.123.132.133",
+        "action": "Allowed",
+        "query_type": "1 (A)",
+        "response_code": "NOERROR",
+        "domain": "github.com",
+        "categories": "Software/Technology,Business Services,Allow List,Infrastructure and Content Delivery Networks,SaaS and B2B,Application",
+        "most_granular_identity_type": "AD Users",
+        "identity_types": "AD Users,Anyconnect Roaming Client",
+        "blocked_categories": "",
+        "rule_id": "506165",
+        "destination_countries": "",
+        "organization_id": "8234970"
+      },
+      {
+        "timestamp": "2024-09-11 18:46:15",
+        "most_granular_identity": "Active Directory User ([email protected])",
+        "identities": "Active Directory User ([email protected]),WIN11-SNG01-Example",
+        "internal_ip": "10.10.1.100",
+        "external_ip": "24.123.132.133",
+        "action": "Allowed",
+        "query_type": "1 (A)",
+        "response_code": "NOERROR",
+        "domain": "office365.com",
+        "categories": "Software/Technology,Business Services,Allow List,Infrastructure and Content Delivery Networks,SaaS and B2B,Application",
+        "most_granular_identity_type": "AD Users",
+        "identity_types": "AD Users,Anyconnect Roaming Client",
+        "blocked_categories": "",
+        "rule_id": "506165",
+        "destination_countries": "",
+        "organization_id": "8234970"
+      },
+      {
+        "timestamp": "2024-09-11 18:46:20",
+        "most_granular_identity": "Active Directory User ([email protected])",
+        "identities": "Active Directory User ([email protected]),WIN11-SNG01-Example",
+        "internal_ip": "10.10.1.101",
+        "external_ip": "24.123.132.134",
+        "action": "Allowed",
+        "query_type": "1 (A)",
+        "response_code": "NOERROR",
+        "domain": "zoom.us",
+        "categories": "Software/Technology,Business Services,Allow List,Infrastructure and Content Delivery Networks,SaaS and B2B,Application",
+        "most_granular_identity_type": "AD Users",
+        "identity_types": "AD Users,Anyconnect Roaming Client",
+        "blocked_categories": "",
+        "rule_id": "506165",
+        "destination_countries": "",
+        "organization_id": "8234970"
+      }
+    ],
+    "blocked": [
+      {
+        "timestamp": "2024-09-11 18:46:10",
+        "most_granular_identity": "Active Directory User ([email protected])",
+        "identities": "Active Directory User ([email protected]),WIN11-SNG01-Example",
+        "internal_ip": "10.10.1.100",
+        "external_ip": "24.123.132.133",
+        "action": "Blocked",
+        "query_type": "1 (A)",
+        "response_code": "NOERROR",
+        "domain": "facebook.com",
+        "categories": "Chat,Social Networking",
+        "most_granular_identity_type": "AD Users",
+        "identity_types": "AD Users,Anyconnect Roaming Client",
+        "blocked_categories": "Social Networking",
+        "rule_id": "506165",
+        "destination_countries": "",
+        "organization_id": "8234970"
+      }
+    ]
+  },
+  "correlated_data": [
+    {
+      "domain": "slack.com",
+      "info": "correlated_info"
+    },
+    {
+      "domain": "github.com",
+      "info": "correlated_info"
+    },
+    {
+      "domain": "facebook.com",
+      "info": "correlated_info"
+    },
+    {
+      "domain": "office365.com",
+      "info": "correlated_info"
+    },
+    {
+      "domain": "zoom.us",
+      "info": "correlated_info"
+    }
+  ],
+  "okta_analysis": {
+    "access_logs": [
+      "2020-06-24T09:40:43.000-05:00 example.myaccessgateway.com auth header.myexample.com 10.0.0.110 - - \"GET / HTTP/2.0\" 302 163 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36\" \"-\" 0.073 -",
+      "2020-06-24T10:15:30.000-05:00 example.myaccessgateway.com auth header.myexample.com 10.0.0.111 - - \"POST /api/login HTTP/2.0\" 200 512 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\" \"-\" 0.145 -"
+    ],
+    "audit_logs": [
+      "2020-08-05T18:40:23.711-07:00 nodeB OAG ADMIN_CONSOLE CLUSTER MANAGER ADMIN NOMINATION INFO Starting authorized nomination process - OAG Version - 2020.6.3"
+    ],
+    "monitor_logs": [
+      "2020-06-25T07:00:02.119-05:00 example.myaccessgateway.com OAG_MONITOR MONITOR DISK_USAGE INFO DISK_USAGE [FILESYSTEM=\"/dev/mapper/centos-root\" MOUNT=\"/\" USAGE=\"12%\"] Mount / is 12% full"
+    ],
+    "nginx_logs": [
+      "2020-07-07-18:45:57 example.myaccessgateway.com systemd[1]: Started Access Gateway Reverse Proxy."
+    ],
+    "sudo_logs": [
+      "Dec 2 13:00:13 : oag-mgmt : TTY=pts/1 ; PWD=/home/oag-mgmt ; USER=root ; COMMAND=/opt/oag/bin/updateCert.sh -f"
+    ]
+  }
+}

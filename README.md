@@ -54,7 +54,6 @@ This tool is designed to meet the following core requirements:
 ```
 "Timestamp","Most Granular Identity","Identities","Internal IP","External IP","Action","Query Type","Response Code","Domain","Categories","Most Granular Identity Type","Identity Types","Blocked Categories","Rule ID","Destination Countries","Organization ID"
 ```
-```
 
 ## Okta Log Format Examples
 
@@ -106,5 +105,112 @@ pip install -r requirements.txt
 ```
 
 ### Running the Tool
+
+#### Quick Start with Example Data
+To quickly test the tool with built-in sample data:
 ```bash
-python main.py
+python src/main.py --example
+```
+
+#### Using Your Own Log Files
+To analyze your own DNS and Okta log files:
+```bash
+python src/main.py --dns-logs /path/to/dns_logs.csv --okta-logs /path/to/okta_logs.txt
+```
+
+#### Save Results to File
+To save analysis results to a JSON file:
+```bash
+python src/main.py --example --output results.json
+python src/main.py --dns-logs dns.csv --okta-logs okta.txt --output analysis_results.json
+```
+
+#### Command Line Options
+- `--example`: Run with built-in sample data for demonstration
+- `--dns-logs <path>`: Path to your DNS logs file (CSV format)
+- `--okta-logs <path>`: Path to your Okta logs file (text format)
+- `--output <path>`: Save results to specified JSON file
+- `--help`: Show help message and usage instructions
+
+### Example Output
+When you run the tool, you'll see output like this:
+```
+============================================================
+DNS Log Analysis Tool - Example Run
+============================================================
+
+📊 Processing 5 DNS log entries...
+📊 Processing 6 Okta log entries...
+
+🔍 Running DNS log analysis...
+
+✅ Analysis Results:
+----------------------------------------
+Detected Patterns: {'allowed': [...], 'blocked': [...]}
+Correlated Data: [{'domain': 'slack.com', 'info': 'correlated_info'}, ...]
+
+🔍 Running Okta log analysis...
+
+✅ Okta Analysis Results:
+----------------------------------------
+📄 Access Logs (2 found): [...]
+📄 Audit Logs (1 found): [...]
+📄 Monitor Logs (1 found): [...]
+📄 NGINX Logs (1 found): [...]
+📄 Sudo Logs (1 found): [...]
+
+💡 Sample Insights:
+----------------------------------------
+✅ Allowed DNS queries: 4
+❌ Blocked DNS queries: 1
+🌐 Unique domains accessed: 5
+🌐 Domains: facebook.com, github.com, office365.com, slack.com, zoom.us
+🔧 Enterprise tools detected: slack.com, office365.com, github.com, zoom.us
+
+============================================================
+✅ Example analysis completed successfully!
+============================================================
+```
+
+### Advanced Usage
+
+#### Core Functions
+The tool implements the two core requirements specified:
+
+**`analyze_enterprise_dns_logs(dns_logs)`**
+```python
+from src.main import DnsLogAnalysisTool
+tool = DnsLogAnalysisTool()
+patterns, correlated_data = tool.run_analysis(dns_logs, okta_logs)
+```
+
+**`correlate_authentication_data(dns_logs, okta_logs)`**
+```python
+from src.services.authentication_correlator import AuthenticationCorrelator
+correlator = AuthenticationCorrelator()
+correlated_data = correlator.correlate_data(dns_logs, okta_logs)
+```
+
+#### Integration with AWS Lambda
+The tool is designed to integrate seamlessly with AWS Lambda pipelines. The JSON output format is ready for cost analysis engines:
+
+```python
+# Example Lambda handler
+import json
+from src.main import DnsLogAnalysisTool
+
+def lambda_handler(event, context):
+    dns_logs = event.get('dns_logs', [])
+    okta_logs = event.get('okta_logs', [])
+    
+    tool = DnsLogAnalysisTool()
+    patterns, correlated_data = tool.run_analysis(dns_logs, okta_logs)
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps({
+            'patterns': patterns,
+            'correlated_data': correlated_data
+        })
+    }
+```
