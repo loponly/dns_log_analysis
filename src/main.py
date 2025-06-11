@@ -23,6 +23,30 @@ class DnsLogAnalysisTool:
         # Further processing can be done here
         return patterns, correlated_data
 
+class OktaLogAnalyzer:
+    def __init__(self):
+        pass
+
+    def analyze_access_logs(self, logs):
+        # Analyze access logs for patterns
+        return [log for log in logs if "GET" in log or "POST" in log]
+
+    def analyze_audit_logs(self, logs):
+        # Analyze audit logs for authentication and authorization events
+        return [log for log in logs if "AUTH" in log or "ADMIN" in log]
+
+    def analyze_monitor_logs(self, logs):
+        # Analyze monitor logs for system status
+        return [log for log in logs if "DISK_USAGE" in log or "KRB5" in log]
+
+    def analyze_nginx_logs(self, logs):
+        # Analyze NGINX logs for domain errors
+        return [log for log in logs if "host not found" in log or "Reverse Proxy" in log]
+
+    def analyze_sudo_logs(self, logs):
+        # Analyze sudo logs for command usage
+        return [log for log in logs if "COMMAND" in log]
+
 if __name__ == "__main__":
     import sys
 
@@ -36,3 +60,16 @@ if __name__ == "__main__":
     # Output results (could be formatted to JSON or printed)
     print("Detected Patterns:", patterns)
     print("Correlated Data:", correlated_data)
+
+    analyzer = OktaLogAnalyzer()
+    access_logs = analyzer.analyze_access_logs(okta_logs)
+    audit_logs = analyzer.analyze_audit_logs(okta_logs)
+    monitor_logs = analyzer.analyze_monitor_logs(okta_logs)
+    nginx_logs = analyzer.analyze_nginx_logs(okta_logs)
+    sudo_logs = analyzer.analyze_sudo_logs(okta_logs)
+
+    print("Access Logs:", access_logs)
+    print("Audit Logs:", audit_logs)
+    print("Monitor Logs:", monitor_logs)
+    print("NGINX Logs:", nginx_logs)
+    print("Sudo Logs:", sudo_logs)

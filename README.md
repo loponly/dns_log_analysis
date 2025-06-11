@@ -54,6 +54,50 @@ This tool is designed to meet the following core requirements:
 ```
 "Timestamp","Most Granular Identity","Identities","Internal IP","External IP","Action","Query Type","Response Code","Domain","Categories","Most Granular Identity Type","Identity Types","Blocked Categories","Rule ID","Destination Countries","Organization ID"
 ```
+```
+
+## Okta Log Format Examples
+
+### Access Logs
+Access Gateway access logs include information on HTTP access request events such as GET and POST.
+
+#### Example Event
+```
+2020-06-24T09:40:43.000-05:00 example.myaccessgateway.com auth header.myexample.com 10.0.0.110 - - "GET / HTTP/2.0" 302 163 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36" "-" 0.073 -
+```
+
+### Audit Logs
+Access Gateway audit logs include information on authentication, authorization, and system-related events.
+
+#### Example Event
+```
+2020-08-05T18:40:23.711-07:00 nodeB OAG ADMIN_CONSOLE CLUSTER MANAGER ADMIN NOMINATION INFO
+Starting authorized nomination process - OAG Version - 2020.6.3
+```
+
+### Monitor Logs
+Access Gateway monitor logs include information on system start/stop, disk usage, and Kerberos status.
+
+#### Example Event
+```
+2020-06-25T07:00:02.119-05:00 example.myaccessgateway.com OAG_MONITOR MONITOR DISK_USAGE INFO DISK_USAGE [FILESYSTEM="/dev/mapper/centos-root" MOUNT="/" USAGE="12%"] Mount / is 12% full
+```
+
+### NGINX Logs
+Access Gateway NGINX logs contain events such as system start/stop and inaccessible domain errors.
+
+#### Example Event
+```
+2020-07-07-18:45:57 example.myaccessgateway.com systemd[1]: Started Access Gateway Reverse Proxy.
+```
+
+### Sudo Logs
+Access Gateway audits sudo command usage by logging all events to the sudoers.log.
+
+#### Example Event
+```
+Dec 2 13:00:13 : oag-mgmt : TTY=pts/1 ; PWD=/home/oag-mgmt ; USER=root ; COMMAND=/opt/oag/bin/updateCert.sh -f
+```
 
 ## Usage
 ### Installation
@@ -64,4 +108,3 @@ pip install -r requirements.txt
 ### Running the Tool
 ```bash
 python main.py
-```
