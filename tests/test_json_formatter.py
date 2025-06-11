@@ -1,5 +1,6 @@
 import unittest
 from src.utils.json_formatter import format_to_json
+import json
 
 class TestJsonFormatter(unittest.TestCase):
 
